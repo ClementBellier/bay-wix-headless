@@ -24,7 +24,7 @@ const copyrightName = COMPANY_NAME || SITE_NAME || "";
         href="/"
         aria-label="Retour à l'accueil"
       >
-        <LogoSquare size="sm" />
+        <LogoSquare />
         <span class="uppercase">{SITE_NAME}</span>
       </a>
     </div>
@@ -33,10 +33,10 @@ const copyrightName = COMPANY_NAME || SITE_NAME || "";
       <div class="h-8 p-3 w-max rounded-md bg-bay-accent text-lg text-white h-auto w-full rounded-xl font-bold">
         <span class="p-3">Contactez nous</span>
         <div class="flex flex-none items-center justify-center">
-          <a href="mailto:bijoux.alex.yell@gmail.com">
+          <a href="mailto:bijoux.alex.yell@gmail.com" class="hover:scale-105 transition duration-300 ease-in-out">
             <MailLogo class="h-[60px] w-[60px] rounded-xl" />
           </a>
-          <a href="tel:+33744936404" class="block">
+          <a href="tel:+33744936404" class="block hover:scale-105 transition duration-300 ease-in-out">
             <PhoneLogo class="h-[60px] w-[60px] rounded-xl" />
           </a>
         </div>

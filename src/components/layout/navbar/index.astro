@@ -33,13 +33,13 @@ const { SITE_NAME } = import.meta.env;
         </a>
         {
           menu.length ? (
-            <ul class="hidden gap-6 text-sm md:flex md:items-center">
+            <ul class="hidden gap-6 md:flex md:items-center">
               {menu.map((item: Menu) =>
                 item.ordre < 1000 ? (
                   <li>
                     <a
                       href={item.path}
-                      class="underline-offset-4 hover:underline text-neutral-400 hover:text-neutral-300"
+                      class="underline-offset-4 text-lg hover:underline text-neutral-400 hover:text-neutral-300"
                     >
                       {item.title}
                     </a>

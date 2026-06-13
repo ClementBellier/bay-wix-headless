@@ -16,7 +16,7 @@ const DynamicTag = active ? "p" : "a";
   <DynamicTag
     href={createUrl(Astro.props.item.path, newParams)}
     class={clsx(
-      "w-full text-sm underline-offset-4 hover:underline hover:text-neutral-100",
+      "w-full text-md underline-offset-4 hover:underline hover:text-neutral-100",
       {
         "underline underline-offset-4": active,
       }
