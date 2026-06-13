@@ -130,7 +130,7 @@ const totalAmount = cart ? (parseFloat(cart.cost.totalAmount.amount) + fraisDeLi
                       </div>
                       <div class="flex h-16 flex-col justify-between">
                         <Price
-                          class="flex justify-end space-y-2 text-right text-sm"
+                          class="flex justify-end space-y-2 text-right text-md"
                           amount={item.cost.totalAmount.amount}
                           currencyCode={item.cost.totalAmount.currencyCode}
                         />
@@ -144,17 +144,35 @@ const totalAmount = cart ? (parseFloat(cart.cost.totalAmount.amount) + fraisDeLi
               })}
           </ul>
           <div class="py-4 text-sm text-neutral-400">
-            <div class="mb-3 flex items-center justify-between border-b pb-1 pt-1 border-neutral-700">
-              <p>Frais de livraison</p>
-              <p class="text-right">{fraisDeLivraison === 0 ? ("Gratuit") : ("6.90€")}</p>
+            <div class="mb-3 border-b pb-1 pt-1 border-neutral-700">
+              <p class="text-base">Frais de livraison ou Retrait en boutique</p>
+              <div class="flex items-center justify-between">
+                <p>Chronopost</p>
+                <p class="text-right">{fraisDeLivraison === 0 ? ("Gratuit") : ("6.90€")}</p>
+              </div>
+              <div class="flex items-center justify-between">
+                <p>Retrait en boutique</p>
+                <p class="text-right">Gratuit</p>
+              </div>
             </div>
-            <div class="mb-3 flex items-center justify-between border-b border-neutral-700 pb-1 pt-1">
-              <p>Total</p>
-              <Price
-                class="text-right text-base text-white"
-                amount={totalAmount.toString()}
-                currencyCode={cart.cost.totalAmount.currencyCode}
-              />
+            <div class="mb-3 border-b border-neutral-700 pb-1 pt-1">
+              <p class="text-base">Total</p>
+              <div class="flex items-center justify-between">
+                <p>Chronopost</p>
+                <Price
+                  class="text-right text-base text-white"
+                  amount={totalAmount.toString()}
+                  currencyCode={cart.cost.totalAmount.currencyCode}
+                />
+              </div>
+              <div class="flex items-center justify-between">
+                <p>Retrait en boutique</p>
+                <Price
+                  class="text-right text-base text-white"
+                  amount={cart.cost.totalAmount.amount}
+                  currencyCode={cart.cost.totalAmount.currencyCode}
+                />
+              </div>
             </div>
           </div>
           <form method="get" action="/api/checkout" data-astro-reload>
