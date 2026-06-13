@@ -183,8 +183,8 @@ const reshapeProduct = (item: products.Product) => {
           selectedOptions: selectedOptions,
         })),
     seo: {
-      description: item.description!,
-      title: item.name!,
+      description: item.seoData?.tags?.[1]?.props?.content ?? item.description!,
+      title: item.seoData?.tags?.[0]?.children ?? item.name!,
     },
     updatedAt: item.lastUpdated?.toString()!,
   } as Product;

@@ -3,6 +3,14 @@ import { ClientRouter } from "astro:transitions";
 import Navbar from "./navbar/index.astro";
 import Banner from "./banner.astro";
 import "../../styles/global.css";
+
+const seo = Astro.props.seo ?? {};
+const title = seo.title ?? "Bijoux Alex Yell - Création artisanale de bijoux";
+const description = seo.description;
+const canonical = seo.canonical;
+const image = seo.image;
+const url = seo.url ?? canonical;
+const type = seo.type ?? "website";
 ---
 
 <!doctype html>
@@ -12,14 +20,36 @@ import "../../styles/global.css";
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Bijoux Alex Yell - Création artisanale de bijoux</title>
+    <title>{title}</title>
+    {description ? <meta name="description" content={description} /> : null}
+    {canonical ? <link rel="canonical" href={canonical} /> : null}
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    {
+      description ? (
+        <meta property="og:description" content={description} />
+      ) : null
+    }
+    {image ? <meta property="og:image" content={image} /> : null}
+    {url ? <meta property="og:url" content={url} /> : null}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {
+      description ? (
+        <meta name="twitter:description" content={description} />
+      ) : null
+    }
+    {image ? <meta name="twitter:image" content={image} /> : null}
+
     <ClientRouter />
   </head>
   <body
     class="bg-neutral-900 text-white selection:text-black selection:bg-white relative"
   >
-  <Banner />
-  <Navbar />
+    <Banner />
+    <Navbar />
     <main>
       <slot />
     </main>

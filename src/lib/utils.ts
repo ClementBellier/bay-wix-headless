@@ -33,6 +33,14 @@ export function sortingMenu(menu: any) {
   return [...menu].sort((a: any, b: any) => a.ordre - b.ordre);
 }
 
+export function stripHtml(html: string) {
+  return html
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\s+/g, " ")
+    .replace('&nbsp;', " ")
+    .trim();
+}
+
 export function getImageUrl(image: string) {
   return media.getImageUrl(image).url
 }

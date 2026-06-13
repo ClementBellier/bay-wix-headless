@@ -4,7 +4,7 @@ import Layout from "../components/layout/layout.astro";
 import Prose from "../components/prose.astro";
 import Social from "../components/social/display-socail.astro";
 import Map from "../components/social/map.astro";
-import {getImageUrl} from "../lib/utils.ts";
+import { getImageUrl } from "../lib/utils.ts";
 import { getPage } from "../lib/wix";
 
 const params = Astro.params;
@@ -22,15 +22,21 @@ if (!page) {
       <Prose class="mb-8" html={page.body} />
       {page.reseauxSociaux && <Social />}
       {page.title2 && <Prose class="mb-8" html={page.title2} />}
-      {page.image && (<div class="size-full">
-                        <img
-                             class="size-full object-cover group-hover:scale-105"
-                             src={getImageUrl(page.image)}
-                             alt="La deventure de notre boutique à Crouy"
-                         /></div>)}
-      {page.body2 && <Prose html={page.body2} /> }
+      {
+        page.image && (
+          <div class="size-full">
+            <img
+              class="size-full object-cover group-hover:scale-105"
+              src={getImageUrl(page.image)}
+              alt="La deventure de notre boutique à Crouy"
+            />
+          </div>
+        )
+      }
+      {page.body2 && <Prose html={page.body2} />}
       {page.map && <Map />}
       {page.time && <Prose class="mb-8" html={page.time} />}
+    </div>
+    <Footer />
   </div>
-  <Footer />
 </Layout>

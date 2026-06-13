@@ -6,6 +6,7 @@ import Gallery from "../../components/product/gallery.astro";
 import ProductDescription from "../../components/product/product-description.astro";
 import RelatedProducts from "../../components/product/related-products.astro";
 import { getProduct } from "../../lib/wix";
+import { stripHtml } from "../../lib/utils";
 import { type Image } from "../../lib/wix/types";
 
 const params = Astro.params;
@@ -29,9 +30,27 @@ const productJsonLd = {
     lowPrice: product.priceRange.minVariantPrice.amount,
   },
 };
+
+const seoTitle = product.seo?.title ?? product.title ?? "";
+const seoDescription = stripHtml(
+  product.seo?.description ?? product.description ?? "",
+);
+const seoImage = product.featuredImage?.url ?? product.images?.[0]?.url ?? "";
+const canonical = Astro.site
+? new URL(`/product/${product.handle}`, Astro.site).toString()
+: `/product/${product.handle}`;
+
+const seo = {
+  title: seoTitle,
+  description: seoDescription,
+  canonical,
+  image: seoImage,
+  url: canonical,
+  type: "product",
+};
 ---
 
-<Layout>
+<Layout seo={seo}>
   <script
     type="application/ld+json"
     set:html={JSON.stringify(productJsonLd)}
